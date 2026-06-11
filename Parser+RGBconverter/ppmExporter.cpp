@@ -13,7 +13,7 @@
 
 int main()
 {
-    string filepath = "..\\test\\testImage2.ARW";
+    string filepath = "..\\test\\testImage6.ARW";
     uint32_t stripBytesCount;
     if(check(filepath, &stripBytesCount))
     {
@@ -39,7 +39,7 @@ int main()
 
 float redBalance = 2.4f; 
 float blueBalance = 1.8f; 
-float gammaTarget = 1.0f / 2.2f;
+float gammaTarget = 1.0f / 2.4f;
 
 for(size_t i = 0; i < colourInfo.size(); i++) {
     
