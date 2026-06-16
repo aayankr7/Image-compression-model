@@ -13,24 +13,33 @@ vector<struct colour> RGBpixels(string filepath,int* w,int* h)
 
     int width, height;
 
+    cout<<"Extracting Raw image data"<<endl;
     vector<char> messyPixelData(stripBytesCount);
     messyPixelData = sensorData(filepath, &width, &height);
 
     vector<uint16_t> pixelData (stripBytesCount/2);
     pixelData = refinedPixels(messyPixelData);
+    messyPixelData.erase(messyPixelData.begin(), messyPixelData.end());
 
+    cout<<"Downscaling brightness channel"<<endl;
     vector<char> lossyPixels(stripBytesCount/2);
     lossyPixels = downscaledPixels(pixelData);
+    pixelData.erase(pixelData.begin(), pixelData.end());
+
 
     vector<int> x(4);
     x = bayerPattern(filepath); 
 
+    cout<<"Converting to RGB"<<endl;
     vector<struct colour> colourInfo(lossyPixels.size());
     colourInfo = colouredPixels(lossyPixels, width, height, x);
+    lossyPixels.erase(lossyPixels.begin(), lossyPixels.end());
 
     float redBalance = 2.4f; 
     float blueBalance = 1.8f; 
     float gammaTarget = 1.0f / 2.4f;
+
+    cout<<"White balancing"<<endl;
 
     for(uint32_t i = 0; i < colourInfo.size(); i++) {
         
