@@ -1,16 +1,17 @@
 #pragma once
 #include "sequencer.h"
 #include <cmath>
+#include <omp.h>
 using namespace std;
 
-#define pi 3.1415
+#define pi M_PI
 
 vector<array<int16_t,64>> coefficients(vector<array<int8_t,64>>&x)
 {
     vector<array<int16_t,64>> y(x.size());
+    #pragma omp parallel for
     for(uint32_t i = 0; i<x.size(); i++)
     {   
-        int j;
         int k = 0;
         for(int v = 0; v<8; v++)
         {
@@ -26,7 +27,7 @@ vector<array<int16_t,64>> coefficients(vector<array<int8_t,64>>&x)
                 {
                     av = 1/sqrt(float(2));
                 }
-                for(j=0; j<64; j++)
+                for(int j=0; j<64; j++)
                 {
                     sum = sum + ((float)x[i][j])*(au)*(av)*cos(((2*(j%8))+1)*u*pi/16)*cos(((2*(j/8))+1)*v*pi/16);
                 }  

@@ -13,7 +13,7 @@ const array<uint8_t, 64> lookUpTable =
     53, 60, 61, 54, 47, 55, 62, 63
 };
 
-vector<array<int16_t,64>> zigZagSequence(vector<array<int8_t,64>> &x)
+vector<array<int16_t,64>> zigZagSequence(vector<array<int16_t,64>> &x)
 {
     vector<array<int16_t,64>> y(x.size());
     for(uint32_t i = 0; i<x.size(); i++)

@@ -25,9 +25,9 @@ const array<float, 64> chromaQuantMatrix = {
     99,  99,  99,  99,  99,  99,  99,  99
 };
 
-vector<array<int8_t,64>> quantized(vector<array<int16_t,64>>&x, int colourOrBw)
+vector<array<int16_t,64>> quantized(vector<array<int16_t,64>>&x, int colourOrBw)
 {
-    vector<array<int8_t,64>> y(x.size());
+    vector<array<int16_t,64>> y(x.size());
     if(colourOrBw == 1)
     {
         for(uint32_t i = 0; i<x.size(); i++)

@@ -20,21 +20,22 @@ vector<array<int16_t,64>> finalYchannel (string filepath, int*w, int*h)
     sequencedLumaData = sequence(LumaData, width, height);
     LumaData.erase(LumaData.begin(), LumaData.end());
 
-    cout<<"DCT Y data"<<endl;
+    cout<<"DCT Y data(this can take 3 minutes)"<<endl;
 
     vector<array<int16_t,64>> coefficientsOfLuma(sequencedLumaData.size());
     coefficientsOfLuma = coefficients(sequencedLumaData);
+    uint32_t size = sequencedLumaData.size();
     sequencedLumaData.erase(sequencedLumaData.begin(),sequencedLumaData.end());
 
     cout<<"Quantizing Y data"<<endl;
 
-    vector<array<int8_t,64>> quantizedCoefficientsOfLuma(sequencedLumaData.size());
+    vector<array<int16_t,64>> quantizedCoefficientsOfLuma(size);
     quantizedCoefficientsOfLuma = quantized(coefficientsOfLuma, 1);
     coefficientsOfLuma.erase(coefficientsOfLuma.begin(),coefficientsOfLuma.end());
 
     cout<<"Reading Y data in ZigZag"<<endl;
 
-    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfLuma(sequencedLumaData.size());
+    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfLuma(size);
     ZigzagQuantizedCoefficientsOfLuma = zigZagSequence(quantizedCoefficientsOfLuma);
     quantizedCoefficientsOfLuma.erase(quantizedCoefficientsOfLuma.begin(),quantizedCoefficientsOfLuma.end());
 
@@ -61,21 +62,22 @@ vector<array<int16_t,64>> finalCrchannel (string filepath, int*w, int*h)
     sequencedCrData = sequence(CrData, width/2, height/2);
     CrData.erase(CrData.begin(), CrData.end());
 
-    cout<<"DCT Cr data"<<endl;
+    cout<<"DCT Cr data(this can take a minute)"<<endl;
 
     vector<array<int16_t,64>> coefficientsOfCr(sequencedCrData.size());
     coefficientsOfCr = coefficients(sequencedCrData);
+    uint32_t size = sequencedCrData.size();
     sequencedCrData.erase(sequencedCrData.begin(),sequencedCrData.end());
 
     cout<<"Quantizing Cr data"<<endl;
 
-    vector<array<int8_t,64>> quantizedCoefficientsOfCr(sequencedCrData.size());
+    vector<array<int16_t,64>> quantizedCoefficientsOfCr(size);
     quantizedCoefficientsOfCr = quantized(coefficientsOfCr, 0);
     coefficientsOfCr.erase(coefficientsOfCr.begin(),coefficientsOfCr.end());
 
     cout<<"Reading Cr data in Zigzag"<<endl;
 
-    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfCr(sequencedCrData.size());
+    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfCr(size);
     ZigzagQuantizedCoefficientsOfCr = zigZagSequence(quantizedCoefficientsOfCr);
     quantizedCoefficientsOfCr.erase(quantizedCoefficientsOfCr.begin(),quantizedCoefficientsOfCr.end());
 
@@ -102,21 +104,22 @@ vector<array<int16_t,64>> finalCbchannel (string filepath, int*w, int*h)
     sequencedCbData = sequence(CbData, width/2, height/2);
     CbData.erase(CbData.begin(), CbData.end());
 
-    cout<<"DCT Cb data"<<endl;
+    cout<<"DCT Cb data(this can take a minute)"<<endl;
 
     vector<array<int16_t,64>> coefficientsOfCb(sequencedCbData.size());
     coefficientsOfCb = coefficients(sequencedCbData);
+    uint32_t size = sequencedCbData.size();
     sequencedCbData.erase(sequencedCbData.begin(),sequencedCbData.end());
 
     cout<<"Quantizing Cb data"<<endl;
 
-    vector<array<int8_t,64>> quantizedCoefficientsOfCb(sequencedCbData.size());
+    vector<array<int16_t,64>> quantizedCoefficientsOfCb(size);
     quantizedCoefficientsOfCb = quantized(coefficientsOfCb, 0);
     coefficientsOfCb.erase(coefficientsOfCb.begin(),coefficientsOfCb.end());
 
     cout<<"Reading Cb data in Zigzag"<<endl;
 
-    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfCb(sequencedCbData.size());
+    vector<array<int16_t,64>> ZigzagQuantizedCoefficientsOfCb(size);
     ZigzagQuantizedCoefficientsOfCb = zigZagSequence(quantizedCoefficientsOfCb);
     quantizedCoefficientsOfCb.erase(quantizedCoefficientsOfCb.begin(),quantizedCoefficientsOfCb.end());
 

@@ -16,11 +16,12 @@ vector<vector<RLEpair>> compressedYchannel(string filepath, int*w, int*h)
     }
     vector<array<int16_t,64>> preDCTdata(stripBytesCount/64);
     preDCTdata = finalYchannel(filepath, &width, &height);
-    dcDelta(preDCTdata);
 
     vector<vector<RLEpair>> y(preDCTdata.size());
     y = ACshred(preDCTdata);
     preDCTdata.erase(preDCTdata.begin(), preDCTdata.end());
+    *w = width;
+    *h = height;
     return y;
 }
 
@@ -36,11 +37,12 @@ vector<vector<RLEpair>> compressedCbchannel(string filepath, int*w, int*h)
     }
     vector<array<int16_t,64>> preDCTdata(stripBytesCount/(64*4));
     preDCTdata = finalCbchannel(filepath, &width, &height);
-    dcDelta(preDCTdata);
 
     vector<vector<RLEpair>> y(preDCTdata.size());
     y = ACshred(preDCTdata);
     preDCTdata.erase(preDCTdata.begin(), preDCTdata.end());
+    *w = width;
+    *h = height;
     return y;
 }
 
@@ -56,10 +58,11 @@ vector<vector<RLEpair>> compressedCrchannel(string filepath, int*w, int*h)
     }
     vector<array<int16_t,64>> preDCTdata(stripBytesCount/(64*4));
     preDCTdata = finalCrchannel(filepath, &width, &height);
-    dcDelta(preDCTdata);
 
     vector<vector<RLEpair>> y(preDCTdata.size());
     y = ACshred(preDCTdata);
     preDCTdata.erase(preDCTdata.begin(), preDCTdata.end());
+    *w = width;
+    *h = height;
     return y;
 }

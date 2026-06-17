@@ -3,6 +3,7 @@
 #include<fstream>
 #include<vector>
 #include <string>
+#include <cstdint>
 using namespace std;
 
 int check(string filepath, uint32_t* totalBytes)

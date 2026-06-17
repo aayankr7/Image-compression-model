@@ -3,6 +3,7 @@
 #include<fstream>
 #include<vector>
 #include <string>
+#include <cstdint>
 using namespace std;
 
 vector<char> sensorData(string filepath, int *width, int *height)
@@ -143,6 +144,6 @@ vector<char> sensorData(string filepath, int *width, int *height)
              ((unsigned char)offsetBytes[1]<<8)|
              ((unsigned char)offsetBytes[0]);
     *height = offset;
-
+    
     return imageData;
 }

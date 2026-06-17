@@ -51,6 +51,14 @@ vector<vector<RLEpair>> ACshred (vector<array<int16_t,64>>&x)
                 }else
                 {
                     zeroSkip++;
+                    if(zeroSkip == 16)
+                    {
+                        struct RLEpair ZRL;
+                        ZRL.runLength = 15;
+                        ZRL.value = 0;
+                        y[i].push_back(ZRL);
+                        zeroSkip = 0;
+                    }
                 }
             }
         }

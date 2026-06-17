@@ -41,6 +41,7 @@ vector<struct colour> RGBpixels(string filepath,int* w,int* h)
 
     cout<<"White balancing"<<endl;
 
+    #pragma omp parallel for
     for(uint32_t i = 0; i < colourInfo.size(); i++) {
         
         float r = colourInfo[i].R;
