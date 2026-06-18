@@ -6,7 +6,7 @@
 
 A high-performance, multithreaded JPEG compression engine built entirely from scratch in pure C++. 
 
-This project bypasses commercial encoders and standard libraries to directly parse raw sensor data (Sony `.arw`) and mathematically compress it into a highly optimized, ISO-standard `.jpg` bitstream. By stripping out metadata bloat and aggressively optimizing spatial color math, this engine achieves significantly leaner file sizes (~18% reduction) compared to commercial out-of-the-box converters, with no perceptible loss in structural quality.
+This project bypasses commercial encoders and standard libraries to directly parse raw sensor data (Sony `.arw`) [Note this only works on "Sony uncompressed RAW", there is also a file format called "Sony compressed RAW", both have same file extensions but the latter will not work here due to a lot of changes in the file architecture] and mathematically compress it into a highly optimized, ISO-standard `.jpg` bitstream. By stripping out metadata bloat and aggressively optimizing spatial color math, this engine achieves significantly leaner file sizes (~18% reduction) compared to commercial out-of-the-box converters, with no perceptible loss in structural quality.
 
 ## Core Features
 * **Zero Dependencies:** Does not rely on `libjpeg`, `OpenCV`, or external black-box compression libraries.
@@ -99,7 +99,7 @@ Run the compiled executable from the command line, passing your raw image file a
 ```bash
 leanjpeg input_image.arw
 ```
-The engine will process the file across multiple threads and generate a fully optimized `compressed.jpg` in the working directory.
+The engine will process the file across multiple threads and generate a fully optimized `compressed.jpg` in the working directory. If you don't have the required file format which is "Sony uncompressed RAW" then you can use one of the testImages in Parser+RGBconverter/test
 
 ---
 
